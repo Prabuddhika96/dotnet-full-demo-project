@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "04b9addc-30d7-4196-8736-d3dd5037268c",
+		"name": "Platforms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31624074"
+	},
+	"item": [
+		{
+			"name": "Get all platforms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/api/Platform"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5168",
+			"type": "string"
+		}
+	]
+}
