@@ -18,7 +18,7 @@ namespace PlatformService.SyncDataSerices.Http
             var httpContent = new StringContent(
                 JsonSerializer.Serialize(platform), Encoding.UTF8, "application/json"
             );
-            var response = await _httpClient.PostAsync($"{_configuration["CommandService"]}/api/c/platforms", httpContent);
+            var response = await _httpClient.PostAsync($"{_configuration["CommandService"]}", httpContent);
 
             if(response.IsSuccessStatusCode){
                 Console.WriteLine("--> Sync POST to CommanService was OK");

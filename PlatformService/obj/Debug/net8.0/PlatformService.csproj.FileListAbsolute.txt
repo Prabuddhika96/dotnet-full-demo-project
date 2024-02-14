@@ -139,3 +139,4 @@ D:\Practice\.Net 11 Hourus\PlatformService\obj\Debug\net8.0\PlatformService.pdb
 D:\Practice\.Net 11 Hourus\PlatformService\obj\Debug\net8.0\PlatformService.genruntimeconfig.cache
 D:\Practice\.Net 11 Hourus\PlatformService\obj\Debug\net8.0\ref\PlatformService.dll
 D:\Practice\.Net 11 Hourus\PlatformService\obj\Debug\net8.0\PlatformService.sourcelink.json
+D:\Practice\.Net 11 Hourus\PlatformService\bin\Debug\net8.0\appsettings.Production.json
