@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlatformService.DTOs;
 using PlatformService.Models;
 using PlatformService.Services;
-using System.Collections;
-using System.Collections.Generic;
+using PlatformService.SyncDataSerices.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,10 +15,12 @@ namespace PlatformService.Controllers
     {
         private readonly IPlatformService _platformService;
         private readonly IMapper _mapper;
-        public PlatformsController(IPlatformService platformService, IMapper mapper)
+        private readonly ICommandDataClient _commandDataClient;
+        public PlatformsController(IPlatformService platformService, IMapper mapper, ICommandDataClient commandDataClient)
         {
             this._platformService = platformService;
             this._mapper = mapper;
+            this._commandDataClient = commandDataClient;
         }
 
         [HttpGet]
@@ -44,12 +45,22 @@ namespace PlatformService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<IEnumerable<PlatformReadDto>> CreatePlatform(PlatformCreateDto platformCreateDto)
+        public async Task<ActionResult<IEnumerable<PlatformReadDto>>> CreatePlatform(PlatformCreateDto platformCreateDto)
         {
             var platformModel = _mapper.Map<Platform>(platformCreateDto);
             _platformService.CreatePlatform(platformModel);
 
             var platformReadDto = _mapper.Map<PlatformReadDto>(platformModel);
+
+            try
+            {
+                await _commandDataClient.SendPlatformToCommand(platformReadDto);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"--> Could not send synchronously : {e.Message}");
+            }
+
             return CreatedAtRoute(nameof(GetPlatformById), new {Id = platformReadDto.Id}, platformReadDto);
         }
     }
