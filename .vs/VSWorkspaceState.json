@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\CommandsService",
+    "\\CommandsService\\Controllers",
+    "\\PlatformService"
+  ],
+  "SelectedNode": "\\CommandsService\\Controllers\\PlatformsController.cs",
+  "PreviewInSolutionExplorer": false
+}
